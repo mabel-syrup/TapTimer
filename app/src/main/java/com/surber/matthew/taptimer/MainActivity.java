@@ -20,13 +20,14 @@ public class MainActivity extends AppCompatActivity {
         final ArrayList<String> times = new ArrayList<>();
         final SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
         Button timeButton = (Button) findViewById(R.id.time_button);
-        final ArrayAdapter<String> timeListAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, times);
+        final ArrayAdapter<String> timeListAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, times);
         final ListView timeList = (ListView) findViewById(R.id.time_list);
         timeList.setAdapter(timeListAdapter);
 
         timeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //new Date() seems to be the only thing that actually gives the current time.  Calendar seems to just keep the initial time.
                 times.add(timeFormat.format(new Date()));
                 timeListAdapter.notifyDataSetChanged();
             }
